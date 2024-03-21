@@ -44,7 +44,6 @@ public class RequestDataController {
         "/path-variable/{age}/{name}",
         "/path-variable/{age}/"
     })
-
     // http://localhost:4000/request-data/path-variable/10/gilldong
     public String deletePathVariable(
         @PathVariable("age" ) Integer age,
@@ -55,7 +54,6 @@ public class RequestDataController {
 
     // HTTP PATCH localhost:4000/request-data/patch/gildong/update
     @PatchMapping("/patch/{userName}/update")
-
     // http://localhost:4000/request-data/patch/gildong/update
     public String patchUpdate (
         @PathVariable("userName") String userName

@@ -21,7 +21,7 @@ public class ResponseDataController {
     // - Response의 header, status code, status message, data를 조작할 수 있도록 하는 클래스
     @GetMapping("/{number}")
     public ResponseEntity<String> getNumber(
-        @PathVariable("number") Integer number
+        @PathVariable("number") Integer number  // @PathVarialbe url에 {}에 있는 값을 받기 위한 어노테이션
     ){
         // String body = number > 0 ? "양수": number < 0 ? "음수" : "영";
         // return new ResponseEntity<>(body, HttpStatusCode.valueOf(400));

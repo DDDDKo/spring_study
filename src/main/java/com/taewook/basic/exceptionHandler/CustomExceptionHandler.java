@@ -12,7 +12,6 @@ public class CustomExceptionHandler {
     // @ExceptionHandler : 지정한 예외에 대해 직접 컨트롤 할 수 있도록 하는 어노테이션
     @ExceptionHandler(value = {MethodArgumentNotValidException.class})
     public ResponseEntity<String> customException (MethodArgumentNotValidException exception) {
-
         return ResponseEntity.status(400).body("필수 데이터를 입력하지 않았습니다.");
     }
 

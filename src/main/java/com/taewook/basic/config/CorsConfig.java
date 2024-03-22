@@ -14,7 +14,7 @@ public class CorsConfig implements WebMvcConfigurer {
         registry
         // addMapping : 어떤 Request URL 패턴에 대하여 
         //                          Cors 정책을 지정할 건지
-        .addMapping("/*")
+        .addMapping("/**")
         // allowedMethods: 해당 Request URL 패턴의 어떤 메서드에
         //                                   Cors 정책을 허용할 건지
         .allowedMethods("*")

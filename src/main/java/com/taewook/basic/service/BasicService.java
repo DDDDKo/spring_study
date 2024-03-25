@@ -6,4 +6,5 @@ public interface BasicService {
 
     // public abstract 제어자 생략 가능
     String getHello(); 
+    String getApple();
 }

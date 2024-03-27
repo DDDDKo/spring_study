@@ -35,7 +35,7 @@ public class ResponseDataController {
     }
 
     @GetMapping("/response/dto")
-    public ResponseEntity<ResponseSampleDto> getResponseDto(){  // ResponseEntity로 status code와 daa를 변경할 수있도록 반환값을 잡고 반환값의 타입은 만들어둔 ResponseSampleDto 타입으로 받도록 지정
+    public ResponseEntity<ResponseSampleDto> getResponseDto(){  // ResponseEntity로 status code와 body를 변경할 수있도록 반환값을 잡고 반환값의 타입은 만들어둔 ResponseSampleDto 타입으로 받도록 지정
         ResponseEntity<ResponseSampleDto> response =  ResponseEntity.status(201).body(new ResponseSampleDto("문자열", 99));
         return response;
     } 

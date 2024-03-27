@@ -1,5 +1,7 @@
 package com.taewook.basic.entity;
 
+import com.taewook.basic.dto.Request.Student.PostStudentRequestDto;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -48,9 +50,16 @@ public class StudentEntity {
     // 만약, 테이블의 컬럼명과 클래스의 필드명이 같으면 생략 가능
     @Column(name = "student_number", nullable = false, unique = true, insertable = false, updatable = false, length = 10)
     private Integer studentNumber;
-    
+
     private String name;
     private Integer age;
     private String address;
     private Boolean graduation;
+
+    public StudentEntity(PostStudentRequestDto dto) {
+        this.name = dto.getName();
+        this.age = dto.getAge();
+        this.address = dto.getAddress();
+        this.graduation = dto.getGraduation();
+    }
 }

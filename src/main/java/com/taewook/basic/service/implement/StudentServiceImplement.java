@@ -1,10 +1,10 @@
 package com.taewook.basic.service.implement;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.taewook.basic.dto.Request.Student.PatchStudentRequestDto;
 import com.taewook.basic.dto.Request.Student.PostStudentRequestDto;
 import com.taewook.basic.entity.StudentEntity;
 import com.taewook.basic.repository.StudentRepository;
@@ -34,6 +34,29 @@ public class StudentServiceImplement implements StudentService{
         studentRepository.save(studentEntity);
 
         return ResponseEntity.status(HttpStatus.CREATED).body("성공!");
+    }
+
+    @Override
+    public ResponseEntity<String> patchStudent(PatchStudentRequestDto dto) {
+        Integer studentNumber = dto.getStudentNumber();
+        String address = dto.getAddress();
+        // student 테이블로 접근(StudentRepository 사용)
+        StudentEntity studentEntity = studentRepository.
+        // dto.studentNumber에 해당하는 레코드를 검색
+        findById(studentNumber).get();
+        // 위 코드는 1줄임
+
+        // 검색된 레코드의 address 값을 dto.address로 변경
+        studentEntity.setAddress(address);        
+        //-----객체지향프로그래밍언어의 class == RDBMS의 table-----
+
+
+        //-----객체지향프로그래밍언어의 instance == RDBMS의 record-----
+        // student 클래스로 접근
+        // dto.studentNumber에 해당하는 인스턴스를 검색
+        // 검색된 레코드의 address 값을 dto.address로 변경
+
+        return null;
     }
     
 }

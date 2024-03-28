@@ -40,23 +40,38 @@ public class StudentServiceImplement implements StudentService{
     public ResponseEntity<String> patchStudent(PatchStudentRequestDto dto) {
         Integer studentNumber = dto.getStudentNumber();
         String address = dto.getAddress();
-        // student 테이블로 접근(StudentRepository 사용)
+
+        // 0. student 테이블에 접근하여 테이블에 해당하는 priamry key를 가지는 레코드가 존재하는지 확인
+        boolean isExistedStudent = studentRepository.existsById(studentNumber);
+        if(!isExistedStudent) return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("존재하지 않는 학생 입니다.");
+        
+        // 1. student 테이블로 접근(StudentRepository 사용)
         StudentEntity studentEntity = studentRepository.
-        // dto.studentNumber에 해당하는 레코드를 검색
+        // 2. dto.studentNumber에 해당하는 레코드를 검색
         findById(studentNumber).get();
-        // 위 코드는 1줄임
+        // 위 코드는 1줄임 원래 StudentEntity studentEntity = studentRepository.findById(studentNumber).get();
 
-        // 검색된 레코드의 address 값을 dto.address로 변경
-        studentEntity.setAddress(address);        
+        // 3. 검색된 레코드의 address 값을 dto.address로 변경
+        studentEntity.setAddress(address);
+
+        // 4. 변경한 인스턴스를데이터베이스에 저장
+        // repository.save() 는 레코드를 생성할 때도 쓰이지만 수정 작업을 할 때도 동일하게 사용됨
+        studentRepository.save(studentEntity);
         //-----객체지향프로그래밍언어의 class == RDBMS의 table-----
-
-
         //-----객체지향프로그래밍언어의 instance == RDBMS의 record-----
         // student 클래스로 접근
         // dto.studentNumber에 해당하는 인스턴스를 검색
         // 검색된 레코드의 address 값을 dto.address로 변경
 
-        return null;
+        return ResponseEntity.status(HttpStatus.OK).body("성공");
+    }
+
+    @Override
+    public ResponseEntity<String> deleteStudent(Integer studentNumber) {
+
+        studentRepository.deleteById(studentNumber);
+        
+        return ResponseEntity.status(HttpStatus.OK).body("성공!");
     }
     
 }

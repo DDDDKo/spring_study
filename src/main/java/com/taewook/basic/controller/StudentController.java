@@ -37,15 +37,16 @@ public class StudentController {
     public ResponseEntity<String> patchStudent (
         @RequestBody @Valid PatchStudentRequestDto requestBody
     ) {
-        ResponseEntity<String> response = ;
+        ResponseEntity<String> response = studentService.patchStudent(requestBody);
         return response;
     }
 
     // DELTE는 CRUD중 DELETE  수정과 삭제는 primary key를 조건으로 걸어두는것이 가장 안전
     @DeleteMapping("/{studentNumber}")
-    public ResponseEntity<?> deleteStudent (
+    public ResponseEntity<String> deleteStudent (
         @PathVariable ("studentNumber") Integer studentNumber
     ) {
-        return null;
+        ResponseEntity<String> response = studentService.deleteStudent(studentNumber);
+        return response;
     }
 }

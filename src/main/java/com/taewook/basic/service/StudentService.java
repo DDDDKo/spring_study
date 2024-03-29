@@ -1,6 +1,5 @@
 package com.taewook.basic.service;
 
-import org.apache.catalina.connector.Response;
 import org.springframework.http.ResponseEntity;
 
 import com.taewook.basic.dto.Request.Student.PatchStudentRequestDto;

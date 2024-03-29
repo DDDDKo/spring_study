@@ -26,9 +26,9 @@ public class StudentController {
     // Post는 CRUD중 C Create
     @PostMapping("/")   // 첫번째 /는 생략 가능하다
     public ResponseEntity<String> postStudent (
-        @RequestBody @Valid PatchStudentRequestDto requestbody
+        @RequestBody @Valid PostStudentRequestDto requestbody
     ) {
-        ResponseEntity<String> respose = studentService.patchStudent(requestbody);
+        ResponseEntity<String> respose = studentService.postStudent(requestbody);
         return respose;
     }
 

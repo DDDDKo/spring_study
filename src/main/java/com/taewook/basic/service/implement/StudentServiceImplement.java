@@ -36,6 +36,7 @@ public class StudentServiceImplement implements StudentService{
         return ResponseEntity.status(HttpStatus.CREATED).body("성공!");
     }
 
+    // UPDATE
     @Override
     public ResponseEntity<String> patchStudent(PatchStudentRequestDto dto) {
         Integer studentNumber = dto.getStudentNumber();
@@ -66,11 +67,15 @@ public class StudentServiceImplement implements StudentService{
         return ResponseEntity.status(HttpStatus.OK).body("성공");
     }
 
+    // DELETE
     @Override
     public ResponseEntity<String> deleteStudent(Integer studentNumber) {
 
+        boolean isExistedStudent = studentRepository.existsById(studentNumber);
+        if(!isExistedStudent) return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("존재하지 않는 학생 입니다.");
+        // DELETE( SQL : DELETE)
         studentRepository.deleteById(studentNumber);
-        
+    
         return ResponseEntity.status(HttpStatus.OK).body("성공!");
     }
     
